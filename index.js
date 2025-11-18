@@ -20,7 +20,23 @@ app.get('/math/circle/:r', (req, res) => {
   res.json(result)
 });
 
-//TODO2
+app.get('/math/rectangle/:width/:height', (req, res) => {
+  const width = parseFloat(req.params.width);
+  const height = parseFloat(req.params.height);
+
+  if (isNaN(width) || width <= 0 || isNaN(height) || height <= 0) {
+    return res.status(400).json({ error: 'Szerokość i wysokość muszą być liczbami większymi od 0.' });
+  }
+
+  const area = width * height;
+  const perimeter = 2 * (width + height);
+
+  const result = {
+    area: area.toFixed(2),
+    perimeter: perimeter.toFixed(2)
+  };
+  res.json(result);
+});
 
 
 //TODO3
